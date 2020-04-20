@@ -1,0 +1,39 @@
+#! /bin/sh
+# /etc/init.d/runphantom
+
+### BEGIN INIT INFO
+# Provides:          runphantom
+# Required-Start:    $all
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: runphantom
+# Description:       phantom for minecraft re-direction
+### END INIT INFO
+
+#
+
+# Some things that run always
+touch /opt/phantom/init_has_run.txt
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting phantom .... "
+    /opt/phantom/startphantom.sh
+    ;;
+  stop)
+    echo "Stopping phantom ...."
+    /opt/phantom/stopphantom.sh
+    ;;
+  status)
+    echo "Checking phantom status..."
+    /opt/phantom/statusphantom.sh
+    ;;
+  *)
+    echo "Usage: /etc/init.d/phantom {start|stop|status}"
+    exit 1
+    ;;
+esac
+
+exit 0
